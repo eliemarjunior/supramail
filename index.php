@@ -13,11 +13,15 @@ $supramail = new Supramail($token, 'json');
 //listar todas as contas
 $ret = $supramail->getContas($domain);//getContas|getContasVirtuais|getContasNormais
 if( isset($ret->error) ){
-  echo $ret->error;
+  	echo $ret->error;
 }else{
-	foreach($contas['email'] as $conta){
-		echo $conta.'<br>';
-	}
+  if(is_array($ret->email)){
+  	foreach($ret->email as $conta){
+  		echo $conta.'<br>';
+  	}
+  }else{
+    echo $ret->email.'<br>';
+  }
 }
 
 //criar conta de email
